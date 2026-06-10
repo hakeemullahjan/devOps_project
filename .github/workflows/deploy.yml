@@ -45,7 +45,7 @@ jobs:
             cd ~/app
 
             
-            sudo docker rmi -f obaidlona/myapp:latest || true
+            sudo sed -i "s|image: obaidlona/myapp:.*|image: obaidlona/myapp:${{ github.sha }}|" docker-compose.yml
 
             
             sudo docker compose pull
