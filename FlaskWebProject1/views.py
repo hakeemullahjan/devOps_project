@@ -19,6 +19,9 @@ def home():
         title='Home Page',
         year=datetime.now().year,
     )
+@app.route('/version')
+def version():
+    return jsonify({"version": "1.0"})
 
 @app.route('/contact')
 def contact():
