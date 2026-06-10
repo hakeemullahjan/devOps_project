@@ -19,10 +19,13 @@ def home():
         title='Home Page',
         year=datetime.now().year,
     )
+
 @app.route('/version')
 def version():
-    return jsonify({"version": "3.0"})
-
+    return jsonify({
+        "instance": os.environ.get('INSTANCE_NAME', 'unknown'),
+        "version": os.environ.get('APP_VERSION', '1.0')
+    })
 @app.route('/contact')
 def contact():
     """Renders the contact page."""

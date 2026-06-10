@@ -31,24 +31,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to VM via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy docker-compose.yml to VM
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
-          script: |
-            
-            echo "${{ secrets.DOCKER_PASSWORD }}" | sudo docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          source: "docker-compose.yml"
+          target: "~/app"
 
-            
-            cd ~/app
-
-            
-            sudo sed -i "s|image: obaidlona/myapp:.*|image: obaidlona/myapp:${{ github.sha }}|" docker-compose.yml
-
-            
-            sudo docker compose pull
-
-            
-            sudo docker compose up -d
+      - name:
