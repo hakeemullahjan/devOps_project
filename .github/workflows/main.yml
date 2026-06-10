@@ -1,0 +1,13 @@
+name: My First CI Pipeline
+
+on: [push]
+
+jobs:
+  print-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print my name
+        run: echo "Obaid"
+
+      - name: Print a message
+        run: echo "This is my first CI/CD pipeline!"

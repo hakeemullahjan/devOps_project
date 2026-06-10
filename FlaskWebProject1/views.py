@@ -5,6 +5,10 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
+from flask import jsonify
+import mysql.connector
+import os
+
 
 @app.route('/')
 @app.route('/home')
@@ -35,3 +39,21 @@ def about():
         year=datetime.now().year,
         message='Your application description page.'
     )
+
+@app.route('/db-time')
+def db_time():
+    try:
+        conn = mysql.connector.connect(
+        host=os.environ.get('MYSQL_HOST', 'mysql-db'),
+        user='root',
+        password='password',
+        database='mydb'
+        )
+        cursor = conn.cursor()
+        cursor.execute("SELECT CURRENT_TIMESTAMP();")
+        result = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return jsonify({"mysql_time": str(result[0])})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
