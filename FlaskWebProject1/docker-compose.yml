@@ -1,25 +1,23 @@
 services:
   flask-app-1:
-    image: obaidlona/myapp:${APP1_IMAGE_TAG:-latest}
+    image: obaidlona/myapp:${APP1_IMAGE_TAG:-v1}
     container_name: flask-app-1
     ports:
       - "8001:8000"
     environment:
       INSTANCE_NAME: flask-app-1
-      APP_VERSION: "2.0"
     networks:
       - mynetwork
     depends_on:
       - db
 
   flask-app-2:
-    image: obaidlona/myapp:${APP2_IMAGE_TAG:-latest}
+    image: obaidlona/myapp:v1
     container_name: flask-app-2
     ports:
       - "8002:8000"
     environment:
       INSTANCE_NAME: flask-app-2
-      APP_VERSION: "1.0"
     networks:
       - mynetwork
     depends_on:
