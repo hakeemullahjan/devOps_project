@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   web:
-    image: obaidlona/myapp:latest
+    image: obaidlona/myapp:${IMAGE_TAG:-latest}
     container_name: mysite
     ports:
       - "5000:8000"
