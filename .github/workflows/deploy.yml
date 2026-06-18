@@ -20,12 +20,12 @@ jobs:
 
       - name: Build and tag image
         run: |
-          docker build -t obaidlona/myapp:latest -t obaidlona/myapp:${{ github.sha }} .
+          docker build -t hakeemullahjan/myapp:latest -t hakeemullahjan/myapp:${{ github.sha }} .
 
       - name: Push image
         run: |
-          docker push obaidlona/myapp:latest
-          docker push obaidlona/myapp:${{ github.sha }}
+          docker push hakeemullahjan/myapp:latest
+          docker push hakeemullahjan/myapp:${{ github.sha }}
 
   deploy:
     needs: build

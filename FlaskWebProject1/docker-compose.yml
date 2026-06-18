@@ -1,6 +1,6 @@
 services:
   flask-app-1:
-    image: obaidlona/myapp:${APP1_IMAGE_TAG:-v1}
+    image: hakeemullahjan/myapp:${APP1_IMAGE_TAG:-v1}
     container_name: flask-app-1
     ports:
       - "8001:8000"
@@ -12,7 +12,7 @@ services:
       - db
 
   flask-app-2:
-    image: obaidlona/myapp:v1
+    image: hakeemullahjan/myapp:v1
     container_name: flask-app-2
     ports:
       - "8002:8000"
