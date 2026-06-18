@@ -23,7 +23,7 @@ def home():
 def version():
     return jsonify({
         "instance": os.environ.get('INSTANCE_NAME', 'unknown'),
-        "version": "18.0.0",
+        "version": "18.1.0",
     })
 @app.route('/contact')
 def contact():
